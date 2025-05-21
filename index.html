@@ -3,21 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Камень, ножницы, бумага</title>
+    <title>RPS Student Edition</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="game">
-        <h1>Камень, ножницы, бумага</h1>
-        <div class="choices">
-            <button class="choice" data-choice="камень">✊ Камень</button>
-            <button class="choice" data-choice="ножницы">✌️ Ножницы</button>
-            <button class="choice" data-choice="бумага">✋ Бумага</button>
+    <div class="container">
+        <h1>✊ Камень ✌️ Ножницы ✋ Бумага</h1>
+        <p class="subtitle">(Версия: студент-разработчик)</p>
+        
+        <div class="scoreboard">
+            <div class="score">
+                <span id="player-score">0</span> : <span id="computer-score">0</span>
+            </div>
+            <p>Ты vs Компьютер</p>
         </div>
+
+        <div class="choices">
+            <button class="choice-btn" data-choice="rock">✊ Камень</button>
+            <button class="choice-btn" data-choice="scissors">✌️ Ножницы</button>
+            <button class="choice-btn" data-choice="paper">✋ Бумага</button>
+        </div>
+
         <div class="result">
-            <p id="player-choice">Твой выбор: ...</p>
-            <p id="computer-choice">Компьютер: ...</p>
-            <p id="outcome">Игра началась!</p>
+            <p id="round-result">Выбери вариант!</p>
         </div>
     </div>
     <script src="script.js"></script>
