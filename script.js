@@ -1,27 +1,42 @@
-const choices = ["Камень", "Ножницы", "Бумага"];
-const buttons = document.querySelectorAll(".choice");
-const playerChoiceDisplay = document.getElementById("player-choice");
-const computerChoiceDisplay = document.getElementById("computer-choice");
-const outcomeDisplay = document.getElementById("outcome");
+const choices = ["rock", "scissors", "paper"];
+let playerScore = 0;
+let computerScore = 0;
 
-buttons.forEach(button => {
+document.querySelectorAll(".choice-btn").forEach(button => {
     button.addEventListener("click", () => {
         const playerChoice = button.getAttribute("data-choice");
         const computerChoice = choices[Math.floor(Math.random() * 3)];
         
-        playerChoiceDisplay.textContent = `Твой выбор: ${playerChoice}`;
-        computerChoiceDisplay.textContent = `Компьютер: ${computerChoice}`;
+        // Определяем победителя
+        const result = getResult(playerChoice, computerChoice);
         
-        if (playerChoice === computerChoice) {
-            outcomeDisplay.textContent = "Ничья!";
-        } else if (
-            (playerChoice === "Камень" && computerChoice === "Ножницы") ||
-            (playerChoice === "Ножницы" && computerChoice === "Бумага") ||
-            (playerChoice === "Бумага" && computerChoice === "Камень")
-        ) {
-            outcomeDisplay.textContent = "Ты победил! 🎉";
-        } else {
-            outcomeDisplay.textContent = "Ты проиграл!  ";
-        }
+        // Обновляем счёт
+        if (result === "win") playerScore++;
+        if (result === "lose") computerScore++;
+        
+        // Обновляем интерфейс
+        document.getElementById("player-score").textContent = playerScore;
+        document.getElementById("computer-score").textContent = computerScore;
+        
+        // Показываем результат раунда
+        const roundResult = document.getElementById("round-result");
+        roundResult.textContent = getResultMessage(playerChoice, computerChoice, result);
     });
 });
+
+function getResult(player, computer) {
+    if (player === computer) return "draw";
+    if (
+        (player === "rock" && computer === "scissors") ||
+        (player === "scissors" && computer === "paper") ||
+        (player === "paper" && computer === "rock")
+    ) return "win";
+    return "lose";
+}
+
+function getResultMessage(player, computer, result) {
+    const choicesRU = { rock: "✊ Камень", scissors: "✌️ Ножницы", paper: "✋ Бумага" };
+    if (result === "draw") return `Ничья! Оба выбрали ${choicesRU[player]}`;
+    if (result === "win") return `Ты выиграл! ${choicesRU[player]} бьёт ${choicesRU[computer]}`;
+    return `Ты проиграл! ${choicesRU[computer]} бьёт ${choicesRU[player]}`;
+}
