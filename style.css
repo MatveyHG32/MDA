@@ -49,22 +49,6 @@ h1 {
     flex-wrap: wrap;
 }
 
-.choice-btn {
-    padding: 12px 20px;
-    font-size: 1rem;
-    background: #6200ea;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: transform 0.2s, background 0.2s;
-}
-
-.choice-btn:hover {
-    background: #3700b3;
-    transform: scale(1.05);
-}
-
 #round-result {
     font-size: 1.2rem;
     margin-top: 1.5rem;
