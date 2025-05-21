@@ -10,7 +10,7 @@ document.querySelectorAll(".choice-btn").forEach(button => {
         // Определяем победителя
         const result = getResult(playerChoice, computerChoice);
         
-        // Обновляем счёт
+        // Счёт
         if (result === "win") playerScore++;
         if (result === "lose") computerScore++;
         
@@ -18,7 +18,7 @@ document.querySelectorAll(".choice-btn").forEach(button => {
         document.getElementById("player-score").textContent = playerScore;
         document.getElementById("computer-score").textContent = computerScore;
         
-        // Показываем результат раунда
+        // результат раунда
         const roundResult = document.getElementById("round-result");
         roundResult.textContent = getResultMessage(playerChoice, computerChoice, result);
     });
@@ -35,8 +35,8 @@ function getResult(player, computer) {
 }
 
 function getResultMessage(player, computer, result) {
-    const choicesRU = { rock: "✊ Камень", scissors: "✌️ Ножницы", paper: "✋ Бумага" };
+    const choicesRU = { rock: " Камень", scissors: " Ножницы", paper: " Бумага" };
     if (result === "draw") return `Ничья! Оба выбрали ${choicesRU[player]}`;
     if (result === "win") return `Ты выиграл! ${choicesRU[player]} бьёт ${choicesRU[computer]}`;
-    return `Ты проиграл! ${choicesRU[computer]} бьёт ${choicesRU[player]}`;
+    return `Ты проиграл ${choicesRU[computer]} бьёт ${choicesRU[player]}`;
 }
